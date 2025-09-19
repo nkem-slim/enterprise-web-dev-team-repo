@@ -3,10 +3,10 @@
     "description": "JSON representation of a User entity",
     "example": {
       "user_id": 1,
-      "full_name": "John Doe",
-      "phone_number": "08012345678",
+      "full_name": "Jane Smith",
+      "phone_number": "250791666666",
       "role": "Customer",
-      "created_at": "2024-01-15T10:30:00.000Z"
+      "created_at": "2024-05-10T16:30:51.000Z"
     }
   },
   "transaction_category_schema": {
@@ -57,14 +57,14 @@
       "remarks": "Transfer to Jane",
       "sender": {
         "user_id": 1,
-        "full_name": "John Doe",
-        "phone_number": "08012345678",
+        "full_name": "Jane Smith",
+        "phone_number": "250791666666",
         "role": "Customer"
       },
       "receiver": {
         "user_id": 2,
-        "full_name": "Jane Smith",
-        "phone_number": "08087654321",
+        "full_name": "Samuel Carter",
+        "phone_number": "250790777777",
         "role": "Customer"
       },
       "category": {
@@ -74,7 +74,7 @@
       },
       "system_log": {
         "log_id": 1,
-        "raw_sms": "You have received 5000.00 from John Doe. New balance: 49500.00. Ref: TXN1001",
+        "raw_sms": "You have received 5000.00 from Jane Smith. New balance: 49500.00. Ref: TXN1001",
         "parsed_status": "Parsed",
         "created_at": "2024-01-15T10:30:00.000Z",
         "notes": "Successfully parsed transfer transaction"
@@ -119,8 +119,8 @@
     "example": {
       "user": {
         "user_id": 1,
-        "full_name": "John Doe",
-        "phone_number": "08012345678",
+        "full_name": "Jane Smith",
+        "phone_number": "250791666666",
         "role": "Customer"
       },
       "transactions": [
@@ -132,7 +132,7 @@
           "status": "Completed",
           "transaction_type": "Sent",
           "category_name": "Transfer",
-          "counterparty": "Jane Smith (08087654321)"
+          "counterparty": "Samuel Carter (250790777777)"
         },
         {
           "transaction_id": 1002,
@@ -142,7 +142,7 @@
           "status": "Completed",
           "transaction_type": "Received",
           "category_name": "Transfer",
-          "counterparty": "Jane Smith (08087654321)"
+          "counterparty": "Samuel Carter (250790777777)"
         }
       ],
       "summary": {

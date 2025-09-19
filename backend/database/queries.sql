@@ -78,7 +78,7 @@ SELECT
 FROM Transactions t
 JOIN Users u ON (t.sender_id = u.user_id OR t.receiver_id = u.user_id)
 JOIN Transaction_Categories c ON t.category_id = c.category_id
-WHERE u.phone_number = '08012345678'
+WHERE u.phone_number = '250791666666'
 ORDER BY t.transaction_date DESC;
 
 -- 5. Get failed transactions with details
@@ -203,3 +203,5 @@ SELECT
     COUNT(*)
 FROM System_Logs
 WHERE parsed_status = 'Error';
+
+
