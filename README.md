@@ -145,9 +145,11 @@ This project is an enterprise-level fullstack application designed to process Mo
    ```
 
 ## Trello Link
+
 [Click me](https://trello.com/invite/b/68bc46e9caee3d10c730abdc/ATTI6e30dc2aa5e0630fccc415b09ece3feaEF219F6D/adventure)
 
-## Architecture Diagram Link
-[Click me](https://www.mermaidchart.com/app/projects/b70ecf6c-d680-473d-82bd-c2d9c298423f/diagrams/d257d5be-241f-454c-9552-1b62c08fcebc/version/v0.1/edit)
+## ERM Architecture Diagram Link
+
+[Click me](https://dbdiagram.io/d/MoMo_SMS_Data_Processing-68cd8158960f6d821af5c062)
 
 ## Thank you
