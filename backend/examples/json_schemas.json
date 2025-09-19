@@ -1,0 +1,156 @@
+{
+  "user_schema": {
+    "description": "JSON representation of a User entity",
+    "example": {
+      "user_id": 1,
+      "full_name": "John Doe",
+      "phone_number": "08012345678",
+      "role": "Customer",
+      "created_at": "2024-01-15T10:30:00.000Z"
+    }
+  },
+  "transaction_category_schema": {
+    "description": "JSON representation of a Transaction Category entity",
+    "example": {
+      "category_id": 1,
+      "category_name": "Transfer",
+      "description": "Money transferred between accounts"
+    }
+  },
+  "transaction_schema": {
+    "description": "JSON representation of a Transaction entity",
+    "example": {
+      "transaction_id": 1001,
+      "sender_id": 1,
+      "receiver_id": 2,
+      "category_id": 3,
+      "amount": 5000.0,
+      "fee": 25.0,
+      "balance_after": 49500.0,
+      "transaction_date": "2024-01-15T10:30:00.000Z",
+      "channel": "SMS",
+      "status": "Completed",
+      "remarks": "Transfer to Jane"
+    }
+  },
+  "system_log_schema": {
+    "description": "JSON representation of a System Log entity",
+    "example": {
+      "log_id": 1,
+      "transaction_id": 1001,
+      "raw_sms": "You have received 5000.00 from John Doe. New balance: 49500.00. Ref: TXN1001",
+      "parsed_status": "Parsed",
+      "created_at": "2024-01-15T10:30:00.000Z",
+      "notes": "Successfully parsed transfer transaction"
+    }
+  },
+  "complete_transaction_with_relations": {
+    "description": "Complete transaction with all related data for API responses",
+    "example": {
+      "transaction_id": 1001,
+      "amount": 5000.0,
+      "fee": 25.0,
+      "balance_after": 49500.0,
+      "transaction_date": "2024-01-15T10:30:00.000Z",
+      "channel": "SMS",
+      "status": "Completed",
+      "remarks": "Transfer to Jane",
+      "sender": {
+        "user_id": 1,
+        "full_name": "John Doe",
+        "phone_number": "08012345678",
+        "role": "Customer"
+      },
+      "receiver": {
+        "user_id": 2,
+        "full_name": "Jane Smith",
+        "phone_number": "08087654321",
+        "role": "Customer"
+      },
+      "category": {
+        "category_id": 3,
+        "category_name": "Transfer",
+        "description": "Money transferred between accounts"
+      },
+      "system_log": {
+        "log_id": 1,
+        "raw_sms": "You have received 5000.00 from John Doe. New balance: 49500.00. Ref: TXN1001",
+        "parsed_status": "Parsed",
+        "created_at": "2024-01-15T10:30:00.000Z",
+        "notes": "Successfully parsed transfer transaction"
+      }
+    }
+  },
+  "transaction_summary_response": {
+    "description": "API response for transaction summary endpoint",
+    "example": {
+      "date": "2024-01-15",
+      "total_transactions": 10,
+      "total_amount": 25000.0,
+      "total_fees": 125.0,
+      "completed_count": 9,
+      "failed_count": 1,
+      "transactions_by_category": [
+        {
+          "category_name": "Transfer",
+          "count": 4,
+          "total_amount": 12000.0
+        },
+        {
+          "category_name": "Deposit",
+          "count": 2,
+          "total_amount": 15000.0
+        },
+        {
+          "category_name": "Payment",
+          "count": 2,
+          "total_amount": 2300.0
+        },
+        {
+          "category_name": "Airtime",
+          "count": 1,
+          "total_amount": 500.0
+        }
+      ]
+    }
+  },
+  "user_transaction_history_response": {
+    "description": "API response for user transaction history",
+    "example": {
+      "user": {
+        "user_id": 1,
+        "full_name": "John Doe",
+        "phone_number": "08012345678",
+        "role": "Customer"
+      },
+      "transactions": [
+        {
+          "transaction_id": 1001,
+          "amount": 5000.0,
+          "fee": 25.0,
+          "transaction_date": "2024-01-15T10:30:00.000Z",
+          "status": "Completed",
+          "transaction_type": "Sent",
+          "category_name": "Transfer",
+          "counterparty": "Jane Smith (08087654321)"
+        },
+        {
+          "transaction_id": 1002,
+          "amount": 2000.0,
+          "fee": 10.0,
+          "transaction_date": "2024-01-15T11:15:00.000Z",
+          "status": "Completed",
+          "transaction_type": "Received",
+          "category_name": "Transfer",
+          "counterparty": "Jane Smith (08087654321)"
+        }
+      ],
+      "summary": {
+        "total_transactions": 2,
+        "total_sent": 5000.0,
+        "total_received": 2000.0,
+        "total_fees": 35.0
+      }
+    }
+  }
+}
