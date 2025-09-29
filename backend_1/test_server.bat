@@ -1,0 +1,6 @@
+@echo off
+echo Testing server imports...
+python simple_test.py
+echo.
+echo Testing server startup...
+python server.py

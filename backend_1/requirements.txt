@@ -1,0 +1,28 @@
+# SMS Transactions REST API Dependencies
+# Built with Python standard library - no external dependencies required
+
+# Optional: For enhanced development experience
+# flask==2.3.3
+# fastapi==0.104.1
+# uvicorn==0.24.0
+
+# Optional: For database connectivity (if needed later)
+# sqlite3  # Built into Python
+# psycopg2-binary==2.9.7  # PostgreSQL
+# pymongo==4.5.0  # MongoDB
+
+# Optional: For testing
+# pytest==7.4.3
+# requests==2.31.0
+
+# Optional: For data processing
+# pandas==2.1.1
+# numpy==1.25.2
+
+# Note: This API is built using only Python standard library modules:
+# - http.server
+# - json
+# - urllib.parse
+# - datetime
+# - uuid
+# - re

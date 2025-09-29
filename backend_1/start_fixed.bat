@@ -1,0 +1,9 @@
+@echo off
+echo Starting SMS Transactions REST API Server...
+echo.
+echo Testing imports first...
+python test_final.py
+echo.
+echo Starting server...
+python start_simple.py
+pause
