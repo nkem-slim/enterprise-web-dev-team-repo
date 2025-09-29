@@ -10,8 +10,13 @@ import time
 import requests
 import base64
 
-# Add current directory to path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Ensure project root (backend_1) is on the path so that 'server' and 'controllers' can be imported.
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(TESTS_DIR)
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+if TESTS_DIR not in sys.path:
+    sys.path.insert(0, TESTS_DIR)
 
 def create_auth_header(username, password):
     """Create Basic Auth header"""
@@ -22,6 +27,11 @@ def create_auth_header(username, password):
 def start_server():
     """Start the server in a separate thread"""
     try:
+        # Change working directory to project root to satisfy relative imports in server.py
+        try:
+            os.chdir(PROJECT_ROOT)
+        except Exception as e:
+            print(f"Could not change directory to project root: {e}")
         from server import run_server
         print("Starting server in background...")
         run_server()
@@ -99,7 +109,12 @@ def main():
         print("You can now run: python test_crud_operations.py")
     else:
         print("\nServer has issues. Check the error messages above.")
-    
+
+    # In automated environments, allow exit without blocking
+    if os.environ.get("NON_INTERACTIVE") == "1":
+        print("\nNON_INTERACTIVE mode enabled - exiting test without keeping server alive.")
+        return
+
     print("\nPress Ctrl+C to stop the server...")
     try:
         while True:

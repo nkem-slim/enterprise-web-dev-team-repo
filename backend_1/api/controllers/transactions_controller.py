@@ -3,16 +3,17 @@ import uuid
 import base64
 import json
 from http.server import BaseHTTPRequestHandler
-from controllers.storage_controller import TransactionStorage
-from controllers.user_controller import UserManager
-from models import Transaction
+from api.controllers.storage_controller import storage_instance
+from api.controllers.user_controller import user_manager_instance
+from api.models import Transaction
 
 class TransactionAPIHandler(BaseHTTPRequestHandler):
     """HTTP Request Handler for Transaction API"""
     
     def __init__(self, *args, **kwargs):
-        self.storage = TransactionStorage()
-        self.user_manager = UserManager()
+        # Use shared singleton instances so data persists across requests
+        self.storage = storage_instance
+        self.user_manager = user_manager_instance
         super().__init__(*args, **kwargs)
 
     def _set_headers(self, status_code=200, content_type='application/json'):

@@ -1,10 +1,13 @@
-from models import User
+from api.models import User
 
 class UserManager:
     """Manages user authentication"""
     def __init__(self):
+        if getattr(self, '_initialized', False):
+            return
         self.users = {}
         self._load_default_users()
+        self._initialized = True
     
     def _load_default_users(self):
         """Load default users"""
@@ -37,3 +40,6 @@ class UserManager:
     def get_user(self, username):
         """Get user by username"""
         return self.users.get(username)
+
+# Module-level singleton
+user_manager_instance = UserManager()

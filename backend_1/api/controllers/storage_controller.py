@@ -1,19 +1,25 @@
-from models import Transaction
-from sms_parser import SMSXMLParser
+from api.models import Transaction
+from dsa.sms_parser import SMSXMLParser
 from datetime import datetime
+
 
 class TransactionStorage:
     """In-memory storage for transactions"""
+
     def __init__(self):
+        # Guard against re-initializing when used as a singleton
+        if getattr(self, '_initialized', False):
+            return
         self.transactions = {}
         self._load_sample_data()
+        self._initialized = True
 
     def _load_sample_data(self):
         """Load SMS transaction data from XML file or fallback to sample data"""
         # Try to parse the XML file first
         parser = SMSXMLParser()
         parsed_transactions = parser.parse_xml_file()
-        
+
         if parsed_transactions:
             for txn_data in parsed_transactions:
                 transaction = Transaction.from_dict(txn_data)
@@ -60,7 +66,7 @@ class TransactionStorage:
                     'remarks': 'SMS: A bank deposit of 40000 RWF has been added to your mobile money account'
                 }
             ]
-            
+
             for txn_data in sample_transactions:
                 transaction = Transaction.from_dict(txn_data)
                 self.transactions[transaction.transaction_id] = transaction
@@ -85,12 +91,12 @@ class TransactionStorage:
         if transaction_id not in self.transactions:
             return None
         existing = self.transactions[transaction_id]
-        
+
         # Update fields
         for key, value in transaction_data.items():
             if hasattr(existing, key) and key not in ['transaction_id', 'created_at']:
                 setattr(existing, key, value)
-        
+
         existing.updated_at = datetime.now().isoformat()
         return existing
 
@@ -99,3 +105,7 @@ class TransactionStorage:
         if transaction_id not in self.transactions:
             return None
         return self.transactions.pop(transaction_id)
+
+
+# Module-level singleton instance
+storage_instance = TransactionStorage()
